@@ -1,0 +1,12 @@
+applications:
+  - name: <%=SDKName%>
+    path: .
+    buildpacks:
+      - nodejs_buildpack
+    memory: 256M
+    command: npm run start:prod
+    routes:
+      - route : <%= domain.replaceAll("_","-") %>-<%= SDKName.replaceAll("_","-") %>.cfapps.<%= region %>.hana.ondemand.com
+    services : 
+      - <%=xsuaaName%>
+      - <%=destinationName%>

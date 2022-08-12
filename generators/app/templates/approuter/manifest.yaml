@@ -1,0 +1,25 @@
+applications:
+#approuter
+  - name: <%=approuterName%>
+    path: .
+    routes:
+      - route : <%= domain.replaceAll("_","-") %>-<%=approuterName.replaceAll("_","-") %>.cfapps.us10.hana.ondemand.com
+    memory: 128M
+    buildpacks:
+      - nodejs_buildpack
+    services: 
+      - <%= xsuaaName %>
+    env: 
+      destinations: >
+        [
+          {
+            "name" : "server",
+            "url":"https://<%= domain.replaceAll("_","-") %>-<%= SDKName.replaceAll("_","-") %>.cfapps.<%= region %>.hana.ondemand.com",          
+            "forwardAuthToken":true
+          },
+          {
+            "name" : "ui5app",
+            "url":"https://<%= domain.replaceAll("_","-") %>-<%= appNameSpace.replaceAll("_","-") %>.cfapps.<%= region %>.hana.ondemand.com"          
+          }
+        ]
+        

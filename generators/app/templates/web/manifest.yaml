@@ -7,4 +7,4 @@ applications:
     memory: 128M
     buildpack: staticfile_buildpack
     services: 
-      - <%= xsuaaName %>
+      - <%= appXsuaaName %>

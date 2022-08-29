@@ -71,28 +71,117 @@
       },
       "routes": [
         {
-          "name": "RouteMainView",
-          "pattern": ":?query:",
-          "target": [
-            "TargetMainView"
-          ]
+          "name": "MainOverview",
+          "pattern": "",
+          "target": ["MainOverview"]
+        },
+        {
+          "name": "CurrentUser",
+          "pattern": "currentUser",
+          "target": ["CurrentUser"]
+        },
+        {
+          "name": "MainOverview",
+          "pattern": "mainOverview",
+          "target": ["MainOverview"]
+        },
+        {
+          "name": "Users",
+          "pattern": "users",
+          "target": ["Users"]
+        },
+        {
+          "name": "Roles",
+          "pattern": "roles",
+          "target": ["Roles"]
+        },
+        {
+          "name": "RoleCollections",
+          "pattern": "roleCollections",
+          "target": ["RoleCollections"]
+        },
+        {
+          "name": "Settings",
+          "pattern": "settings",
+          "target": ["Settings"]
+        },
+        {
+          "name": "Events",
+          "pattern": "events",
+          "target": ["EventLogs"]
+        },
+        {
+          "name": "ErrorPage",
+          "pattern": "errorPage",
+          "target": ["ErrorPage"]
         }
       ],
       "targets": {
-        "TargetMainView": {
+        "MainOverview": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "MainOverview",
+          "viewName": "MainOverview"
+        },
+        "CurrentUser": {
+          "viewPath": "<%=ui5Namespace%>.<%=ui5ProjectName%>.view.user",
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "CurrentUser",
+          "viewName": "CurrentUser"
+        },
+        "Users": {
+          "viewPath": "<%=ui5Namespace%>.<%=ui5ProjectName%>.view.user",
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "Users",
+          "viewName": "Users"
+        },
+        "Roles": {
+          "viewPath": "<%=ui5Namespace%>.<%=ui5ProjectName%>.view.role",
+          "controlId": "app",
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "Roles",
+          "viewName": "Roles"
+        },
+        "RoleCollections": {
+          "viewPath": "<%=ui5Namespace%>.<%=ui5ProjectName%>.view.role",
+          "controlId": "app",
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "RoleCollections",
+          "viewName": "RoleCollections"
+        },
+        "Settings": {
+          "viewPath": "<%=ui5Namespace%>.<%=ui5ProjectName%>.view.security",
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "Settings",
+          "viewName": "Settings"
+        },
+        "EventLogs": {
+          "viewPath": "<%=ui5Namespace%>.<%=ui5ProjectName%>.view.events",
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "MainView",
-          "viewName": "MainView"
+          "viewId": "EventLogs",
+          "viewName": "EventLogs"
+        },
+        "ErrorPage": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "ErrorPage",
+          "viewName": "ErrorPage"
         }
       }
     },
     "rootView": {
-      "viewName": "<%=ui5Namespace%>.<%=ui5ProjectName%>.view.App",
+      "viewName": "<%=ui5Namespace%>.<%=ui5ProjectName%>.view.MainToolPage",
       "type": "XML",
       "async": true,
-      "id": "App"
+      "id": "toolPage"
     }
   }
 }

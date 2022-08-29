@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "initProject" : "npm install && npm run createXSUAAService && npm run createDestinationService && cd approuter && npm install && cd .. && cd sdk && npm install && cd ..",
+    "initProject" : "npm install && npm run applicationXSUAAService && npm run apiaccessXSUAAService && npm run createDestinationService && cd approuter && npm install && cd .. && cd sdk && npm install && cd ..",
     "deploy_web": "run-s build:ui && cd web && cf push",
-    "deploy_sdk": "cd sdk && cf push",
-    "createDestinationService" : "cf create-service destination lite <%=destinationName%> && cf create-service-key <%=destinationName%> <%=destinationName%>-service-key",
+    "deploy_sdk": "cd sdk && npm run deploy",
     "deploy_approuter": "cd approuter && cf push",
+    "createDestinationService" : "cf create-service destination lite <%= destinationName %> && cf create-service-key <%= destinationName %> <%= destinationName %>-service-key",
     "deploy_all" : "npm run deploy_web && npm run deploy_sdk && npm run deploy_approuter",
-    "createXSUAAService" : "cf create-service xsuaa apiaccess <%=xsuaaName%> -c security/xs-security.json",
+    "apiaccessXSUAAService" : "cf create-service xsuaa apiaccess <%= apiXsuaaName %> -c security/apiaccess-xs-security.json",
+    "applicationXSUAAService" : "cf create-service xsuaa application <%= appXsuaaName %> -c security/xs-security.json",
     "build:ui": "run-s  build:uimodule",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:uimodule": "ui5 build --config=web/uimodule/ui5.yaml --clean-dest --dest web/uimodule/dist --include-task=generateManifestBundle"

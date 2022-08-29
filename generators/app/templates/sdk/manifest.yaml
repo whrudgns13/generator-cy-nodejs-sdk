@@ -8,5 +8,5 @@ applications:
     routes:
       - route : <%= domain.replaceAll("_","-") %>-<%= SDKName.replaceAll("_","-") %>.cfapps.<%= region %>.hana.ondemand.com
     services : 
-      - <%=xsuaaName%>
+      - <%=appXsuaaName%>
       - <%=destinationName%>

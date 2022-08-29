@@ -16,7 +16,7 @@ module.exports = class extends Generator {
       {
         name: 'rootDir',
         message: 'Your root dir name?',
-        default : 'btp_api_connect_SDK_template'
+        default : 'btp-api-connect-SDK-template'
       },
       {
         name: 'domain',
@@ -30,7 +30,7 @@ module.exports = class extends Generator {
       {
         name: 'SDKName',
         message: 'Your SDKName name?',
-        default: "cySDK"
+        default: "cy-sdk"
       },
       {
         name: 'appNameSpace',
@@ -50,12 +50,17 @@ module.exports = class extends Generator {
       {
         name: 'approuterName',
         message: 'Your approuter name?',
-        default: "cyApprouter"
+        default: "cy-approuter"
       },
       {
-        name: 'xsuaaName',
-        message: 'Your xsuaa sevice name?',
-        default: "myXsuaaSecurity"
+        name: 'apiXsuaaName',
+        message: 'Your apiaccess xsuaa sevice name?',
+        default: "api-xsuaa-security"
+      },
+      {
+        name: 'appXsuaaName',
+        message: 'Your application xsuaa sevice name?',
+        default: "app-xsuaa-security"
       },
       {
         name: 'destinationName',
@@ -65,7 +70,7 @@ module.exports = class extends Generator {
       {
         name: 'connectivityDestinationName',
         message: 'Your connectivity destination name?',
-        default: "myConnectDestination"
+        default: "apiAccessDestination"
       },
     ];
 
@@ -91,7 +96,7 @@ module.exports = class extends Generator {
         domain : this.props.domain,
         region : this.props.region,
         SDKName : this.props.SDKName,
-        xsuaaName : this.props.xsuaaName,
+        appXsuaaName: this.props.appXsuaaName,
         destinationName : this.props.destinationName,
         connectivityDestinationName : this.props.connectivityDestinationName,
       }
@@ -105,7 +110,7 @@ module.exports = class extends Generator {
         region : this.props.region,
         SDKName : this.props.SDKName,
         appNameSpace : this.props.appNameSpace,
-        xsuaaName : this.props.xsuaaName,
+        appXsuaaName: this.props.appXsuaaName,
         approuterName : this.props.approuterName
       }
     );
@@ -113,7 +118,10 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath(`security`),
       this.destinationPath(`${rootDir}/security`),
-      {xsuaaName : this.props.xsuaaName}
+      { 
+        appXsuaaName: this.props.appXsuaaName,
+        apiXsuaaName: this.props.apiXsuaaName
+      }
     );
 
     this.fs.copyTpl(
@@ -125,29 +133,17 @@ module.exports = class extends Generator {
         domain : this.props.domain,
         region : this.props.region,
         appNameSpace : this.props.appNameSpace,
-        xsuaaName : this.props.xsuaaName
+        appXsuaaName: this.props.appXsuaaName
       }
     );
-
-    // this.fs.copyTpl(
-    //   this.templatePath('manifest.yaml'),
-    //   this.destinationPath(`${rootDir}/manifest.yaml`),
-    //   {
-    //     domain : this.props.domain,
-    //     region : this.props.region,
-    //     serverNameSpace : this.props.serverNameSpace,
-    //     appNameSpace : this.props.appNameSpace,
-    //     xsuaaName : this.props.xsuaaName,
-    //     approuterName : this.props.approuterName
-    //   },
-    // );
 
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath(`${rootDir}/package.json`),
       {
         rootDir,
-        xsuaaName : this.props.xsuaaName,
+        appXsuaaName: this.props.appXsuaaName,
+        apiXsuaaName: this.props.apiXsuaaName,
         destinationName : this.props.destinationName,
       }
     );

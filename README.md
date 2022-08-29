@@ -1,19 +1,52 @@
-# generator-cy-nodejs-sdk [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-cy-nodejs-sdk [![NPM version][npm-image]][npm-url]
 > 
 
-## Installation
+> 안녕하세욥
 
-First, install [Yeoman](http://yeoman.io) and generator-cy-nodejs-sdk using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+사전에 BTP의 계정과 Nodejs가 필요합니다
+
+## Installation
 
 ```bash
 npm install -g yo
 npm install -g generator-cy-nodejs-sdk
 ```
 
-Then generate your new project:
+## Template 생성
 
 ```bash
 yo cy-nodejs-sdk
+```
+
+## 프로젝트 초기화, BTP CF에 배포
+
+```bash
+cf login
+cd <your dir>
+npm run initProject
+npm run deploy_all
+```
+
+
+## 폴더구조
+```bash
+rootDir
+    approuter
+    security
+    sdk
+    web
+-------------
+approuter 어플리케이션의 진입점
+security에는 공통적으로 사용할 보안파일 xs-security.json이 들어있습니다
+sdk에는 Open API를 사용할 REST API를 정의
+web ui5
+```
+
+
+## xs-security.json
+```bash
+csrfProtection 속성으로 POST요청시 x-csrf-token을 보내야할지 설정할 수 있음
+false면 보내지 않아도 통과
 ```
 
 ## Getting To Know Yeoman

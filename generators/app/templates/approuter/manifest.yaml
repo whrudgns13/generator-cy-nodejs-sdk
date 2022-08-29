@@ -8,7 +8,7 @@ applications:
     buildpacks:
       - nodejs_buildpack
     services: 
-      - <%= xsuaaName %>
+      - <%= appXsuaaName %>
     env: 
       destinations: >
         [

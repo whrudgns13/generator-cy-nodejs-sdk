@@ -10,6 +10,7 @@ applications:
     services: 
       - <%= appXsuaaName %>
     env: 
+      SESSION_TIMEOUT: 40
       destinations: >
         [
           {
